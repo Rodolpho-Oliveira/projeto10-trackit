@@ -2,10 +2,13 @@ import { useState } from "react"
 import axios from "axios"
 import styled from "styled-components"
 import { useNavigate } from "react-router-dom"
+import { useContext } from "react"
+import TokenContext from "../../context/TokenContext"
 
 export default function Login(){
     const [userLogin, setUserLogin] = useState({email: "", password: ""})
     const navigate = useNavigate()
+    const {setData} = useContext(TokenContext)
     return (
         <LoginPage>
             <img src="../sources/Logo.png" alt="logo"></img>
@@ -22,12 +25,13 @@ export default function Login(){
         if(userLogin.email !== "" && userLogin.password !== ""){
             const promise = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login", userLogin)
             promise.then((response) =>{ 
-                const token = response.data.token
-                navigate("/hoje", {state: token})
+                const data = response.data
+                setData(data)
+                navigate("/hoje")
         })
             promise.catch((error) => {
                 console.log(error.toJSON())
-              })
+              alert("Revise as informações")})
             
         }
     }

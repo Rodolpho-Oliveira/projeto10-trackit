@@ -1,9 +1,11 @@
 import axios from "axios"
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
 
 export default function SignUp(){
     const [userSignUp, setUserSignUp] = useState({email: "", name: "", image: "", password: ""})
+    const navigate = useNavigate()
     return(
         <SingUpPage>
             <img src="../sources/Logo.png" alt="logo"></img>
@@ -23,10 +25,10 @@ export default function SignUp(){
         e.preventDefault()
         if(userSignUp.email !== "" && userSignUp.password !== "" && userSignUp.name !== "" && userSignUp.image !== ""){
             const promise = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up", userSignUp)
-            promise.then(response => console.log(response.data))
+            promise.then(navigate("/"))
             promise.catch(function (error) {
                 console.log(error.toJSON())
-              })
+              alert("Revise as informações")})
 
         }
     }
