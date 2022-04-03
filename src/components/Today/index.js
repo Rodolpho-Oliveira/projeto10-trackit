@@ -20,7 +20,7 @@ export default function Today(){
         }
     }
     
-    const promise = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today", config)
+    axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today", config)
     return(
         <TodayDiv>
             <Header/>
