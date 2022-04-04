@@ -9,6 +9,7 @@ import TokenContext from "../../context/TokenContext"
 
 export default function Habits(){
     const [createHabit, setCreateHabit] = useState(false)
+    const [check, setCheck] = useState()
     const [habits, setHabits] = useState({
         name: "",
         days: []
@@ -43,33 +44,42 @@ export default function Habits(){
                 :   (e) => { e.preventDefault() 
                 setLoading(false)
                 alert("Preencha corretamente!")} }>
-                <Text disabled={loading ? true : false}  onChange={(e) => setHabits({...habits, name: e.target.value})} type="text"/>
+                <Text disabled={loading ? true : false} value={habits.name}  onChange={(e) => setHabits({...habits, name: e.target.value})} type="text"/>
                 <Days>
-                    <input disabled={loading ? true : false} onClick={(e) => habits.days.includes(e.target.value) ?
-                         setHabits({...habits, days: habits.days.filter(day => day !== e.target.value)}) : setHabits({...habits, days: [...habits.days, e.target.value]})} type="checkbox" id="check_1" name="check_1" value="0"/>
+                    <input disabled={loading ? true : false} onClick={(e) => habits.days.includes(e.target.value)?
+                         setHabits({...habits, days: habits.days.filter(day => day !== e.target.value)}) 
+                         :setHabits({...habits, days: [...habits.days, e.target.value]})} type="checkbox" id="check_1" name="check_1" value="0"/>
                     <label htmlFor="check_1">D</label>
                     <input disabled={loading ? true : false}  onClick={(e) => habits.days.includes(e.target.value) ?
-                         setHabits({...habits, days: habits.days.filter(day => day !== e.target.value)}) : setHabits({...habits, days: [...habits.days, e.target.value]})} type="checkbox" id="check_2" name="check_2" value="1"/>
+                         setHabits({...habits, days: habits.days.filter(day => day !== e.target.value)}) 
+                         : setHabits({...habits, days: [...habits.days, e.target.value]})} type="checkbox" id="check_2" name="check_2" value="1"/>
                     <label htmlFor="check_2">S</label>
                     <input disabled={loading ? true : false}  onClick={(e) => habits.days.includes(e.target.value) ?
-                         setHabits({...habits, days: habits.days.filter(day => day !== e.target.value)}) : setHabits({...habits, days: [...habits.days, e.target.value]})} type="checkbox" id="check_3" name="check_3" value="2"/>
+                         setHabits({...habits, days: habits.days.filter(day => day !== e.target.value)}) 
+                         : setHabits({...habits, days: [...habits.days, e.target.value]})} type="checkbox" id="check_3" name="check_3" value="2"/>
                     <label htmlFor="check_3">T</label>
                     <input disabled={loading ? true : false}  onClick={(e) => habits.days.includes(e.target.value) ?
-                         setHabits({...habits, days: habits.days.filter(day => day !== e.target.value)}) : setHabits({...habits, days: [...habits.days, e.target.value]})} type="checkbox" id="check_4" name="check_4" value="3"/>
+                         setHabits({...habits, days: habits.days.filter(day => day !== e.target.value)}) 
+                         : setHabits({...habits, days: [...habits.days, e.target.value]})} type="checkbox" id="check_4" name="check_4" value="3"/>
                     <label htmlFor="check_4">Q</label>
                     <input disabled={loading ? true : false}  onClick={(e) => habits.days.includes(e.target.value) ?
-                         setHabits({...habits, days: habits.days.filter(day => day !== e.target.value)}) : setHabits({...habits, days: [...habits.days, e.target.value]})} type="checkbox" id="check_5" name="check_5" value="4"/>
+                         setHabits({...habits, days: habits.days.filter(day => day !== e.target.value)}) 
+                         : setHabits({...habits, days: [...habits.days, e.target.value]})} type="checkbox" id="check_5" name="check_5" value="4"/>
                     <label htmlFor="check_5">Q</label>
                     <input disabled={loading ? true : false}  onClick={(e) => habits.days.includes(e.target.value) ?
-                         setHabits({...habits, days: habits.days.filter(day => day !== e.target.value)}) : setHabits({...habits, days: [...habits.days, e.target.value]})} type="checkbox" id="check_6" name="check_6" value="5"/>
+                         setHabits({...habits, days: habits.days.filter(day => day !== e.target.value)}) 
+                         : setHabits({...habits, days: [...habits.days, e.target.value]})} type="checkbox" id="check_6" name="check_6" value="5"/>
                     <label htmlFor="check_6">S</label>
                     <input disabled={loading ? true : false}  onClick={(e) => habits.days.includes(e.target.value) ?
-                         setHabits({...habits, days: habits.days.filter(day => day !== e.target.value)}) : setHabits({...habits, days: [...habits.days, e.target.value]})} type="checkbox" id="check_7" name="check_7" value="6"/>
+                         setHabits({...habits, days: habits.days.filter(day => day !== e.target.value)}) 
+                         : setHabits({...habits, days: [...habits.days, e.target.value]})} type="checkbox" id="check_7" name="check_7" value="6"/>
                     <label htmlFor="check_7">S</label>
                 </Days>
                 <Buttons>
-                    <button onClick={() =>{ setCreateHabit(!createHabit) 
-                    setHabits({name: "",days: []})}}>Cancelar</button>
+                    <button type="button" onClick={() =>{ setCreateHabit(!createHabit) 
+                    setHabits({name: habits.name,days: []})
+                    console.log(habits)}
+                    }>Cancelar</button>
                     {loading ? 
                     <Loading><ThreeDots width="50px" color="#ffffff"></ThreeDots></Loading>
                     : <Save type="submit"></Save>}
