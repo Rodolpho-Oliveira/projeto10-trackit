@@ -3,7 +3,9 @@ import Footer from "../Footer"
 import styled from "styled-components"
 import axios from "axios"
 import { useContext, useState, useEffect } from "react"
+import { ThreeDots } from "react-loader-spinner"
 import TokenContext from "../../context/TokenContext"
+
 
 export default function Habits(){
     const [createHabit, setCreateHabit] = useState(false)
@@ -12,6 +14,7 @@ export default function Habits(){
         days: []
     })
     const [datas, setDatas] = useState([])
+    const [loading, setLoading] = useState(false)
     const {data} = useContext(TokenContext)
     const config = {
         headers: {
@@ -28,36 +31,48 @@ export default function Habits(){
                 <p>Meus hábitos</p>
                 <button onClick={() => setCreateHabit(!createHabit)}>+</button>
             </MyHabits>
-            {createHabit ? <form onSubmit={(habits.name !== "" && habits.days.length > 0) ?(e) => { e.preventDefault() 
+            {createHabit ? 
+            <form onSubmit={(habits.name !== "" && habits.days.length > 0) ? (e) => { e.preventDefault() 
+            setLoading(true)
             const promise = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", habits, config)
             promise.then(response => {
+                setLoading(false)
                 setDatas([...datas, response.data])})
                 setCreateHabit(!createHabit)
-                setHabits({name: "",
-                days: []})} 
-                : (e) => { e.preventDefault() 
+                setHabits({name: "", days: []})} 
+                :   (e) => { e.preventDefault() 
+                setLoading(false)
                 alert("Preencha corretamente!")} }>
-                <Text onChange={(e) => setHabits({...habits, name: e.target.value})} type="text"/>
+                <Text disabled={loading ? true : false}  onChange={(e) => setHabits({...habits, name: e.target.value})} type="text"/>
                 <Days>
-                    <input onClick={(e) => habits.days.includes(e.target.value) ? setHabits({...habits, days: habits.days.filter(day => day !== e.target.value)}): setHabits({...habits, days: [...habits.days, e.target.value]})} type="checkbox" id="check_1" name="check_1" value="0"/>
+                    <input disabled={loading ? true : false} onClick={(e) => habits.days.includes(e.target.value) ?
+                         setHabits({...habits, days: habits.days.filter(day => day !== e.target.value)}) : setHabits({...habits, days: [...habits.days, e.target.value]})} type="checkbox" id="check_1" name="check_1" value="0"/>
                     <label htmlFor="check_1">D</label>
-                    <input onClick={(e) => habits.days.includes(e.target.value) ? setHabits({...habits, days: habits.days.filter(day => day !== e.target.value)}): setHabits({...habits, days: [...habits.days, e.target.value]})} type="checkbox" id="check_2" name="check_2" value="1"/>
+                    <input disabled={loading ? true : false}  onClick={(e) => habits.days.includes(e.target.value) ?
+                         setHabits({...habits, days: habits.days.filter(day => day !== e.target.value)}) : setHabits({...habits, days: [...habits.days, e.target.value]})} type="checkbox" id="check_2" name="check_2" value="1"/>
                     <label htmlFor="check_2">S</label>
-                    <input onClick={(e) => habits.days.includes(e.target.value) ? setHabits({...habits, days: habits.days.filter(day => day !== e.target.value)}): setHabits({...habits, days: [...habits.days, e.target.value]})} type="checkbox" id="check_3" name="check_3" value="2"/>
+                    <input disabled={loading ? true : false}  onClick={(e) => habits.days.includes(e.target.value) ?
+                         setHabits({...habits, days: habits.days.filter(day => day !== e.target.value)}) : setHabits({...habits, days: [...habits.days, e.target.value]})} type="checkbox" id="check_3" name="check_3" value="2"/>
                     <label htmlFor="check_3">T</label>
-                    <input onClick={(e) => habits.days.includes(e.target.value) ? setHabits({...habits, days: habits.days.filter(day => day !== e.target.value)}): setHabits({...habits, days: [...habits.days, e.target.value]})} type="checkbox" id="check_4" name="check_4" value="3"/>
+                    <input disabled={loading ? true : false}  onClick={(e) => habits.days.includes(e.target.value) ?
+                         setHabits({...habits, days: habits.days.filter(day => day !== e.target.value)}) : setHabits({...habits, days: [...habits.days, e.target.value]})} type="checkbox" id="check_4" name="check_4" value="3"/>
                     <label htmlFor="check_4">Q</label>
-                    <input onClick={(e) => habits.days.includes(e.target.value) ? setHabits({...habits, days: habits.days.filter(day => day !== e.target.value)}): setHabits({...habits, days: [...habits.days, e.target.value]})} type="checkbox" id="check_5" name="check_5" value="4"/>
+                    <input disabled={loading ? true : false}  onClick={(e) => habits.days.includes(e.target.value) ?
+                         setHabits({...habits, days: habits.days.filter(day => day !== e.target.value)}) : setHabits({...habits, days: [...habits.days, e.target.value]})} type="checkbox" id="check_5" name="check_5" value="4"/>
                     <label htmlFor="check_5">Q</label>
-                    <input onClick={(e) => habits.days.includes(e.target.value) ? setHabits({...habits, days: habits.days.filter(day => day !== e.target.value)}): setHabits({...habits, days: [...habits.days, e.target.value]})} type="checkbox" id="check_6" name="check_6" value="5"/>
+                    <input disabled={loading ? true : false}  onClick={(e) => habits.days.includes(e.target.value) ?
+                         setHabits({...habits, days: habits.days.filter(day => day !== e.target.value)}) : setHabits({...habits, days: [...habits.days, e.target.value]})} type="checkbox" id="check_6" name="check_6" value="5"/>
                     <label htmlFor="check_6">S</label>
-                    <input onClick={(e) => habits.days.includes(e.target.value) ? setHabits({...habits, days: habits.days.filter(day => day !== e.target.value)}): setHabits({...habits, days: [...habits.days, e.target.value]})} type="checkbox" id="check_7" name="check_7" value="6"/>
+                    <input disabled={loading ? true : false}  onClick={(e) => habits.days.includes(e.target.value) ?
+                         setHabits({...habits, days: habits.days.filter(day => day !== e.target.value)}) : setHabits({...habits, days: [...habits.days, e.target.value]})} type="checkbox" id="check_7" name="check_7" value="6"/>
                     <label htmlFor="check_7">S</label>
                 </Days>
                 <Buttons>
                     <button onClick={() =>{ setCreateHabit(!createHabit) 
                     setHabits({name: "",days: []})}}>Cancelar</button>
-                    <Save type="submit"></Save>
+                    {loading ? 
+                    <Loading><ThreeDots width="50px" color="#ffffff"></ThreeDots></Loading>
+                    : <Save type="submit"></Save>}
                 </Buttons>
             </form>: null}
             <HabitsSquare>
@@ -154,10 +169,15 @@ const MyHabits = styled.div`
     padding-left: 15px;
     padding-right: 15px;
 
+    p{
+        color: #126BA5;
+    }
+
     button{
         background-color: #52B6FF;
         border-radius: 4px;
         color: #FFFFFF;
+        border: 0px solid;
     }
 `
 
@@ -254,4 +274,18 @@ const TitleCreated = styled.div`
     ion-icon{
         margin-right: 10px;
     }
+`
+
+const Loading = styled.div`
+    background-color: #52B6FF;
+    color: #ffffff;
+    height: 34px;
+    width: 84px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    border: 1px solid #D5D5D5;
+    margin-bottom: 5px;
+    opacity: 0.7;
 `

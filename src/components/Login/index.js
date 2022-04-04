@@ -99,4 +99,5 @@ const Loading = styled.div`
     border-radius: 5px;
     border: 1px solid #D5D5D5;
     margin-bottom: 5px;
+    opacity: 0.7;
 `

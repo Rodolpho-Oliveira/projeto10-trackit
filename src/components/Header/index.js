@@ -18,7 +18,7 @@ const HeaderDiv = styled.div`
     height: 10vh;
     width: 100vw;
     background-color: darkblue;
-    position: absolute;
+    position: fixed;
     top: 0;
 `
 
