@@ -2,7 +2,7 @@ import { createGlobalStyle } from 'styled-components';
  
 const GlobalStyle = createGlobalStyle`
     *{
-        font-family: Lexend Deca;
+        font-family: Lexend Deca, Arial, Helvetica, sans-serif;
     }
     
     body {
