@@ -11,9 +11,9 @@ import { useState } from "react"
 export default function App(){
     const [data, setData] = useState()
     const [percent, setPercent] = useState([])
-    const [teste, setTeste] = useState(0)
+    const [confirmed, setConfirmed] = useState(0)
     return(
-        <TokenContext.Provider value={{data, setData, percent, setPercent, teste, setTeste}}>
+        <TokenContext.Provider value={{data, setData, percent, setPercent, confirmed, setConfirmed}}>
             <BrowserRouter>
             <GlobalStyle />
                 <Routes>

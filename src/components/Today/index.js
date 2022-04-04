@@ -11,14 +11,14 @@ export default function Today(){
     const now = dayjs()
     const week = ["Domingo","Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira", "Sábado"]
     const [todayCard, setTodayCard] = useState([])
-    const {data, setPercent, setTeste, teste} = useContext(TokenContext)
+    const {data, setPercent, setConfirmed, confirmed} = useContext(TokenContext)
     setPercent(todayCard)
     useEffect(() => {
         let b = 0
         todayCard.forEach((a) => {if(a.done === true){
             b += 1
        }
-       setTeste(b)
+       setConfirmed(b)
     })
     })
     const config = {
@@ -34,7 +34,7 @@ export default function Today(){
             <Header/>
             <Time>
                <Date>{week[now.day()] }, {now.$D < 10 ? "0" + now.$D : now.$D}/{now.$M + 1 < 10 ? "0" + (now.$M + 1) : now.$M}</Date>
-                {teste > 0 ? <GreenPercent>{Math.round((teste / todayCard.length) * 100 )}% dos hábitos concluídos</GreenPercent> :<Percent>Nenhum hábito concluído ainda</Percent> }
+                {confirmed > 0 ? <GreenPercent>{Math.round((confirmed / todayCard.length) * 100 )}% dos hábitos concluídos</GreenPercent> :<Percent>Nenhum hábito concluído ainda</Percent> }
             </Time>
             <CardsList>
                 {todayCard.map((info) => <TodaysCards>

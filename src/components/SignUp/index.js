@@ -21,15 +21,13 @@ export default function SignUp(){
     )
 
     function createAccount(e){
-        console.log(userSignUp)
         e.preventDefault()
         if(userSignUp.email !== "" && userSignUp.password !== "" && userSignUp.name !== "" && userSignUp.image !== ""){
             const promise = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up", userSignUp)
             promise.then(navigate("/"))
-            promise.catch(function (error) {
-                console.log(error.toJSON())
-              alert("Revise as informações")})
-
+        }
+        else{
+            alert("Revise as informações")
         }
     }
 }

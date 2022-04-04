@@ -76,19 +76,20 @@ export default function Habits(){
                 </Buttons>
             </form>: null}
             <HabitsSquare>
-            {datas.length === 0 ? <NotCreated>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</NotCreated>: null}
-                {console.log(datas)}        
+            {datas.length === 0 ? <NotCreated>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</NotCreated>: null}        
                 {datas.map((data) => 
                 <HabitsCreated>
                     <TitleCreated>
                         <h2>{data.name}</h2>
-                        <div onClick={() => {axios.delete(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${data.id}`, config)
+                        <div onClick={() => {
+                            let confirm = window.confirm("Tem certeza que quer excluir?") === true ?
+                            axios.delete(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${data.id}`, config)
                         .then(
                             axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", config)
                         .then(habitData => setDatas(habitData.data)))
                         .catch(axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", config)
                         .then(habitData => setDatas(habitData.data)))
-                        }}>
+                        : null}}>
                             <ion-icon name="trash-outline"></ion-icon>
                         </div>
                     </TitleCreated>
@@ -103,7 +104,6 @@ export default function Habits(){
                     </Days>
                 </HabitsCreated>)}
             </HabitsSquare>
-            {console.log(datas)}
             <Footer/>
         </Habit>
     )

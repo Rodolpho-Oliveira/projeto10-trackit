@@ -6,11 +6,11 @@ import { useContext, useState } from "react";
 import TokenContext from "../../context/TokenContext";
 
 export default function Footer(){
-    const {percent, teste} = useContext(TokenContext)
+    const {percent, confirmed} = useContext(TokenContext)
     return(
         <FooterDiv>
             <Link to="/habitos"><p>Hábitos</p></Link>
-            <Link to="/hoje"><Circle><div><CircularProgressbar text={"Hoje"} value={teste} maxValue={percent.length}></CircularProgressbar></div></Circle></Link>
+            <Link to="/hoje"><Circle><div><CircularProgressbar text={"Hoje"} value={confirmed} maxValue={percent.length}></CircularProgressbar></div></Circle></Link>
             <Link to="/historico"> <p>Histórico</p> </Link>
         </FooterDiv>
     )
