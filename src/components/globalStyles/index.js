@@ -8,6 +8,7 @@ const GlobalStyle = createGlobalStyle`
     body {
         font-family: Lexend Deca;
         box-sizing: border-box;
+        background-color: #E5E5E5;
     }
 
     a {

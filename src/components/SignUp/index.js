@@ -42,6 +42,7 @@ const SingUpPage = styled.div`
     justify-content: center;
     height: 100vh;
     width: 100vw;
+    background-color: #FFFFFF;
     
 
     form {

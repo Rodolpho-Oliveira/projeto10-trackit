@@ -33,7 +33,7 @@ const FooterDiv = styled.div`
     width: 100vw;
     height: 70px;
     bottom: 0;
-    position: absolute;
+    position: fixed;
     display: flex;
     align-items: center;
     justify-content: space-between;
