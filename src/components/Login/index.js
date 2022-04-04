@@ -26,8 +26,8 @@ export default function Login(){
         </LoginPage>
     )
     function acessAccount(e){
-        e.preventDefault()
         setLoading(true)
+        e.preventDefault()
         if(userLogin.email !== "" && userLogin.password !== ""){
             const promise = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login", userLogin)
             promise.then((response) =>{ 
