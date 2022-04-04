@@ -56,6 +56,7 @@ const LoginPage = styled.div`
     height: 100vh;
     width: 100vw;
     background-color: #FFFFFF;
+    overflow-y: hidden;
 
     form {
         display: flex;
